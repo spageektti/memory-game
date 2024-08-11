@@ -1,60 +1,135 @@
-html,
-body,
-main {
+html, body, main {
     height: 100%;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #000000; /* Black background */
+    color: #00ffff; /* Neon cyan text */
     font-family: "Fira Mono", monospace;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
+}
+
+main {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 h1 {
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 20px;
     color: #00ffff; /* Neon cyan */
     text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
-    margin-bottom: 20px;
 }
 
 #game-board {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: repeat(4, 100px);
-    gap: 10px;
+    gap: 15px;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
 }
 
 .card {
+    position: relative;
     width: 100px;
     height: 100px;
-    background-color: #222222; /* Dark gray */
-    border-radius: 10px;
+    background-color: #222222; /* Dark gray background for hidden cards */
+    color: transparent; /* Hide the symbol by default */
+    font-size: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
-    color: #ffffff;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s, border 0.3s;
     cursor: pointer;
-    transition: transform 0.2s;
-    text-shadow: 0 0 5px #ffffff;
+    border: 2px solid #00ffff; /* Neon cyan border */
 }
 
 .card.flipped {
-    background-color: #00ffff; /* Neon cyan for flipped cards */
+    background-color: #00ffff; /* Neon cyan for revealed cards */
+    color: #000000; /* Show the symbol */
     transform: rotateY(180deg);
+}
+
+.card.matched {
+    border: 2px solid #00ff00; /* Neon green border for matched cards */
+    background-color: #222222; /* Keep the dark gray background */
+    color: #000000; /* Keep the symbol visible */
 }
 
 #resetBtn {
     margin-top: 20px;
     color: #ffffff;
-    background-color: #000000;
-    border: solid 1px #ffffff;
+    background-color: #000000; /* Black */
+    border: solid 1px #ffffff; /* White border */
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    text-shadow: none;
 }
 
 #resetBtn:hover {
-    background-color: #333333;
+    background-color: #333333; /* Darker gray */
+}
+
+#resetBtn:active {
+    background-color: #555555; /* Even darker gray */
+    transform: scale(0.98);
+}
+
+#resetBtn:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ffffff;
+}
+
+#moves, #timer {
+    margin-top: 10px;
+    font-size: 24px;
+    text-align: center;
+    color: #00ff00; /* Neon green */
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+
+select {
+    margin-bottom: 20px;
+    color: #ffffff;
+    background-color: #000000; /* Black */
+    border: solid 1px #ffffff; /* White border */
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    appearance: none;
+    text-shadow: none;
+}
+
+select:hover {
+    background-color: #333333; /* Darker gray */
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ffffff;
+}
+
+select option {
+    background-color: #000000; /* Black */
+    color: #ffffff; /* White text */
+}
+
+.easy {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.medium {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.hard {
+    grid-template-columns: repeat(8, 1fr);
 }
